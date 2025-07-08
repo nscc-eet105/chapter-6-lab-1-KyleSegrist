@@ -10,9 +10,14 @@ def main():
     sale_list = []
     while index < len(DAY):
         for day in range(len(DAY)):
-            sales = float(input(f'Enter the sales for {DAY[day]} $ ')or"0")
-            sale_list.append(sales)
-            index += 1
+            try:
+                sales = float(input(f'Enter the sales for {DAY[day]} $ ')or"0")
+                sale_list.append(sales)
+                index += 1
+            except ValueError:
+                float(input(f'Error please enter a value for the sales for {DAY[day]} $ ' or "0"))
+                sale_list.append(sales)
+                index += 1
 
     total = sum(sale_list)
     print()
@@ -23,15 +28,9 @@ def main():
     print()
     high_sales = max(sale_list)
     low_sales = min(sale_list)
-    #print(f"The lowest sales for the week are: $ {low_sales:,.2f}")
-    #print(f"The highest sales for the week are: $ {high_sales:,.2f}")
-    #print (DAY)
-    #print(sale_list)
-    daily = []
-    for day, sales in zip (DAY, sale_list):
-        #print(f"The lowest sales for the week are: $ {low_sales:,.2f} on {day}.")
-        #print(f"The highest sales for the week are: $ {high_sales:,.2f} on {day}.")
-        print(f'{day}: ${sales:,.2f}')
+    print(f"The lowest sales for the week are: $ {low_sales:,.2f} on {DAY[sale_list.index(low_sales)]}.")
+    print(f"The highest sales for the week are: $ {high_sales:,.2f} on {DAY[sale_list.index(high_sales)]}.")
+
 
 
 main()
